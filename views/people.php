@@ -38,12 +38,16 @@ $people= $controller->queryAllPeople();
                 echo '<td>'.$person->get('email').'</td>';
                 echo '<td>'.$person->get('age').'</td>';
                 echo '<td>'.$person->legalage().'</td>';
+                echo '  <td>';
+                echo '      <a href="formadd.php?id=' . $person->get('id') . '">Modificar</a>';
+                echo '      <a href="action/deleteperson.php?id=' . $person->get('id') . '">Delete</a>';
+                echo '  </td>';
                 echo '<tr>';
             }
             ?>
         </tbody>
     </table>
     <br>
-    <button type="button"> Add new Person</button>
+    <a href="formadd.php">Add new Person</a>
 </body>
 </html>

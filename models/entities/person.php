@@ -39,7 +39,30 @@ class Person extends Entity
             return 'No';
         }
     }
-    public function save(){}
-    public function update(){}
-    public function delete(){}
+    public function save(){
+        $sql="insert into personas (nombre,email,edad) values";
+        $sql .= "( '". $this->name ."' , '". $this->email ."' , " . $this->age . ")";
+        $abrirconex = new ConexionDB();
+        $resultDB = $abrirconex->execSQL($sql);
+        $abrirconex->close(); //cierra la conexion
+        return $resultDB;
+    }
+    public function update(){
+        $sql="update personas set ";
+        $sql .= "nombre='".$this->name."',";
+        $sql .= "email='".$this->email."',";
+        $sql .= "edad=".$this->age;
+        $sql .= " where id=".$this->id;
+        $abrirconex = new ConexionDB();
+        $resultDB = $abrirconex->execSQL($sql);
+        $abrirconex->close(); //cierra la conexion
+        return $resultDB;
+    }
+    public function delete(){
+        $sql = "delete from personas where id=" . $this->id;
+        $abrirconex = new ConexionDB();
+        $resultDB = $abrirconex->execSQL($sql);
+        $abrirconex->close(); //cierra la conexion
+        return $resultDB;
+    }
 }
